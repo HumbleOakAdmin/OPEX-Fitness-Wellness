@@ -2080,7 +2080,7 @@ textarea.w-input, textarea.w-select {
 
 .w-checkbox-input--inputType-custom.w--redirected-checked {
   background-color: #3898ec;
-  background-image: url("https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg");
+  background-image: url("/OPEX-Fitness-Wellness/images/custom-checkbox-checkmark.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2636,7 +2636,7 @@ h1 {
 }
 
 .teamsection {
-  background-image: url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6909959cf592ce237b6b0cf4_Team.webp");
+  background-image: url("/OPEX-Fitness-Wellness/images/6909959cf592ce237b6b0cf4_Team.webp");
   background-position: 50%;
   background-size: cover;
   flex-flow: column;
@@ -2912,7 +2912,7 @@ h1 {
 }
 
 .contact-us {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913bb4f446da31f47d92192_Contact%20Us%20Banner.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6913bb4f446da31f47d92192_Contact Us Banner.webp");
   background-position: 0 0, 50%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3007,7 +3007,7 @@ h1 {
 }
 
 .how-it-works {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913c3177d53756400da8fb8_How%20It%20WOrks.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6913c3177d53756400da8fb8_How It WOrks.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3139,7 +3139,7 @@ h1 {
 }
 
 .orange-section {
-  background-image: linear-gradient(#e87200a6, #e87200a6), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913d0457f9b14f2262cda95_Branding%20Shoot.webp");
+  background-image: linear-gradient(#e87200a6, #e87200a6), url("/OPEX-Fitness-Wellness/images/6913d0457f9b14f2262cda95_Branding Shoot.webp");
   background-position: 0 0, 50%;
   background-size: auto, cover;
   justify-content: center;
@@ -3165,7 +3165,7 @@ h1 {
 }
 
 .meet-the-team {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6909959cf592ce237b6b0cf4_Team.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6909959cf592ce237b6b0cf4_Team.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3412,7 +3412,7 @@ h1 {
 }
 
 .what-is-opex {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913c3177d53756400da8fb8_How%20It%20WOrks.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6913c3177d53756400da8fb8_How It WOrks.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3527,7 +3527,7 @@ h1 {
 }
 
 .orange-section-ii {
-  background-image: linear-gradient(#e87200a6, #e87200a6), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/69197633004aae43e04726d0_opex-gyms-branding-shoot-54.webp");
+  background-image: linear-gradient(#e87200a6, #e87200a6), url("/OPEX-Fitness-Wellness/images/69197633004aae43e04726d0_opex-gyms-branding-shoot-54.webp");
   background-position: 0 0, 50%;
   background-size: auto, cover;
   justify-content: center;
@@ -3538,7 +3538,7 @@ h1 {
 }
 
 .abby-personal-training {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6912c1bdbf36f2d191044c04_Personal%20Training%20FAQ.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6912c1bdbf36f2d191044c04_Personal Training FAQ.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3628,7 +3628,7 @@ h1 {
 }
 
 .abby-massage {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/69199205874706a3d6da3431_Abby%20Massage.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/69199205874706a3d6da3431_Abby Massage.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3667,7 +3667,7 @@ h1 {
 }
 
 .abby-counselling {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/691aaf54e8381d3da4797587_Abby%20counselling.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/691aaf54e8381d3da4797587_Abby counselling.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3691,7 +3691,7 @@ h1 {
 }
 
 .abby-acupuncture {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/691ab3a4d8fd5f34a2006020_Abby%20Acupuncture.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/691ab3a4d8fd5f34a2006020_Abby Acupuncture.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3702,7 +3702,7 @@ h1 {
 }
 
 .abby-active-rehab {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/691ab8d90a4bc2c26bf3454a_Active%20Rehab.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/691ab8d90a4bc2c26bf3454a_Active Rehab.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3713,7 +3713,7 @@ h1 {
 }
 
 .abby-chiro {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/691abcf640382d0770fafac3_Chiropractiv.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/691abcf640382d0770fafac3_Chiropractiv.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3772,7 +3772,7 @@ h1 {
 }
 
 .remote-pt {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6912c1bdbf36f2d191044c04_Personal%20Training%20FAQ.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6912c1bdbf36f2d191044c04_Personal Training FAQ.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -3806,7 +3806,7 @@ h1 {
 }
 
 .prenatal-chiro {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913b85d4407439260096864_ChiroForKids.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6913b85d4407439260096864_ChiroForKids.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -4053,7 +4053,7 @@ h1 {
 
 .close-button {
   cursor: pointer;
-  background-image: url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/69366ca4b71dd66ac6def2ec_cross-white.svg");
+  background-image: url("/OPEX-Fitness-Wellness/images/69366ca4b71dd66ac6def2ec_cross-white.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 1rem 1rem;
@@ -4167,7 +4167,7 @@ h1 {
 }
 
 .opex-community {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6912c1bdbf36f2d191044c04_Personal%20Training%20FAQ.webp");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/6912c1bdbf36f2d191044c04_Personal Training FAQ.webp");
   background-position: 0 0, 50% 35%;
   background-size: auto, cover;
   flex-flow: column;
@@ -4201,7 +4201,7 @@ h1 {
 }
 
 .book {
-  background-image: linear-gradient(#000000b3, #000000b3), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/693a5d2a9c016762e4300ce2_Chilliwack%20Website%202%20.jpeg");
+  background-image: linear-gradient(#000000b3, #000000b3), url("/OPEX-Fitness-Wellness/images/693a5d2a9c016762e4300ce2_Chilliwack Website 2 .jpeg");
   background-position: 0 0, 50% 28%;
   background-size: auto, cover;
   flex-flow: column;
@@ -5297,7 +5297,7 @@ h1 {
   }
 
   .prenatal-chiro {
-    background-image: linear-gradient(#00000080, #00000080), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/6913b85d4407439260096864_ChiroForKids.webp");
+    background-image: linear-gradient(#00000080, #00000080), url("/OPEX-Fitness-Wellness/images/6913b85d4407439260096864_ChiroForKids.webp");
     background-position: 0 0, 50%;
     background-size: auto, cover;
     justify-content: center;
@@ -5351,7 +5351,7 @@ h1 {
   }
 
   .we-are-section-mobile {
-    background-image: linear-gradient(#ffffff59, #ffffff59), url("https://cdn.prod.website-files.com/690932ef2235c6427d9f2e0b/69095786b398885e36c381fa_We%20Are%20Section.webp");
+    background-image: linear-gradient(#ffffff59, #ffffff59), url("/OPEX-Fitness-Wellness/images/69095786b398885e36c381fa_We Are Section.webp");
     background-position: 0 0, 50%;
     background-size: auto, cover;
     display: block;

@@ -316,6 +316,7 @@ async function main() {
     JSON.stringify(manifest, null, 2)
   );
   console.log(`\nDone. ${pages.length} pages, ${downloaded.size} assets.`);
+  console.log('Run: node scripts/fix-paths-and-css.mjs && node scripts/strip-sri.mjs');
 }
 
 main().catch((e) => {
