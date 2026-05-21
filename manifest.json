@@ -1,0 +1,71 @@
+{
+  "mirroredAt": "2026-05-21T02:04:30.111Z",
+  "source": "https://opexabbotsford.com",
+  "pages": [
+    {
+      "path": "/",
+      "slug": "home"
+    },
+    {
+      "path": "/community",
+      "slug": "community"
+    },
+    {
+      "path": "/personal-training",
+      "slug": "personal-training"
+    },
+    {
+      "path": "/remote-personal-training",
+      "slug": "remote-personal-training"
+    },
+    {
+      "path": "/fitness-consult",
+      "slug": "fitness-consult"
+    },
+    {
+      "path": "/what-is-opex",
+      "slug": "what-is-opex"
+    },
+    {
+      "path": "/how-it-works",
+      "slug": "how-it-works"
+    },
+    {
+      "path": "/meet-the-team",
+      "slug": "meet-the-team"
+    },
+    {
+      "path": "/chiropractor",
+      "slug": "chiropractor"
+    },
+    {
+      "path": "/prenatal-chiropractor",
+      "slug": "prenatal-chiropractor"
+    },
+    {
+      "path": "/active-rehab",
+      "slug": "active-rehab"
+    },
+    {
+      "path": "/acupuncture",
+      "slug": "acupuncture"
+    },
+    {
+      "path": "/abbotsford-counselling",
+      "slug": "abbotsford-counselling"
+    },
+    {
+      "path": "/abbotsford-massage",
+      "slug": "abbotsford-massage"
+    },
+    {
+      "path": "/contact-us",
+      "slug": "contact-us"
+    },
+    {
+      "path": "/faq",
+      "slug": "faq"
+    }
+  ],
+  "assetsDownloaded": 294
+}
