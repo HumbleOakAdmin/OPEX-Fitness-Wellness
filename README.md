@@ -21,6 +21,15 @@ Home, Community, Personal Training, Remote Personal Training, Fitness Consult, W
 2. In repo **Settings → Pages**, set source to **Deploy from branch** → `main` → `/ (root)`.
 3. Site URL: `https://humbleoakadmin.github.io/OPEX-Fitness-Wellness/`
 
+Asset paths are prefixed with `/OPEX-Fitness-Wellness/` so CSS, JS, and images load on the GitHub project URL. After mirroring from Webflow, run:
+
+```bash
+node scripts/fix-paths-and-css.mjs
+node scripts/strip-sri.mjs
+```
+
+If you point a **custom domain** at this repo (e.g. `opexabbotsford.com`), set `BASE = ''` in `scripts/fix-paths-and-css.mjs` and re-run that script.
+
 External services (Jane App booking, WhatsApp, YouTube, Google Maps, analytics) remain linked to their original URLs as on the Webflow site.
 
 ## Re-mirror from Webflow
