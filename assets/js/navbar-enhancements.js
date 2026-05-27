@@ -1,6 +1,11 @@
 (function () {
   "use strict";
 
+  var cssLink = document.querySelector('link[href*="navbar-enhancements.css"]');
+  if (cssLink && cssLink.href.indexOf("v=") === -1) {
+    cssLink.href += (cssLink.href.indexOf("?") === -1 ? "?" : "&") + "v=2";
+  }
+
   // Custom navbar controller for the GitHub-hosted site.
   // Does NOT rely on Webflow behavior.
   var OPEN_CLASS = "nav-menu-open";

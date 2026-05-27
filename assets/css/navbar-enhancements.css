@@ -157,19 +157,34 @@ body.nav-menu-open .side-menu-background {
   height: 100vh !important;
 }
 
-/* No extra top offset — menu floats over content; undo prior section padding rules */
-.navbar.div-block ~ section,
-.navbar.div-block ~ .hero-section,
-.navbar.div-block ~ .contact-us,
-.navbar.div-block ~ .contactformsection {
+/* Remove top gap — beats older cached rules that used section:not() + 3.25rem */
+body .navbar.div-block ~ section.hero-section,
+body .navbar.div-block ~ section.contact-us,
+body .navbar.div-block ~ section.contactformsection,
+body .navbar.div-block ~ section:not(.side-menu_component):not(.side-menu-background) {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-body.nav-menu-open > section,
-body.nav-menu-open > .hero-section,
-body.nav-menu-open > .contact-us,
-body.nav-menu-open > .contactformsection {
+body.nav-menu-open > section.hero-section,
+body.nav-menu-open > section.contact-us,
+body.nav-menu-open > section.contactformsection,
+body.nav-menu-open > section:not(.side-menu_component):not(.side-menu-background) {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Contact banner: title near top (not vertically centered in 50vh) */
+body .navbar.div-block ~ section.contact-us {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: 28vh !important;
+  max-height: none !important;
+  padding-top: 3.5rem !important;
+}
+
+body .navbar.div-block ~ section.contact-us .bannerheadingcont {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
