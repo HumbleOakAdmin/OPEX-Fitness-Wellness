@@ -10,24 +10,39 @@
   function openMenu() {
     document.body.classList.add(OPEN_CLASS);
 
-    // Webflow interactions can leave inline opacity/visibility/transform styles
-    // on menu children. Clear them so content always appears.
+    // Hard force show menu content (override any Webflow inline/CSS hiding).
     function revealNow() {
       var panel = document.querySelector(".side-menu_component");
+      var bg = document.querySelector(".side-menu-background");
+      if (panel) {
+        panel.style.setProperty("opacity", "1", "important");
+        panel.style.setProperty("visibility", "visible", "important");
+        panel.style.setProperty("pointer-events", "auto", "important");
+        panel.style.setProperty("display", "flex", "important");
+      }
+      if (bg) {
+        bg.style.setProperty("opacity", "1", "important");
+        bg.style.setProperty("visibility", "visible", "important");
+        bg.style.setProperty("pointer-events", "auto", "important");
+      }
+
       if (!panel) return;
 
-      // Broad reset: clear inline styles that commonly hide Webflow elements.
       panel.querySelectorAll("*").forEach(function (el) {
-        if (!el) return;
-        if (el.style) {
-          el.style.display = "";
-          el.style.opacity = "";
-          el.style.visibility = "";
-          el.style.pointerEvents = "";
-          el.style.transform = "";
-        }
+        if (!el || !el.style) return;
 
-        // If Webflow set aria-hidden=true, clear it.
+        el.style.setProperty("opacity", "1", "important");
+        el.style.setProperty("visibility", "visible", "important");
+        el.style.setProperty("transform", "none", "important");
+        el.style.setProperty("pointer-events", "auto", "important");
+
+        // Ensure nothing is clipped/zero-height by leftover inline styles.
+        el.style.setProperty("display", "block", "important");
+        el.style.setProperty("height", "auto", "important");
+        el.style.setProperty("max-height", "none", "important");
+        el.style.setProperty("overflow", "visible", "important");
+        el.style.setProperty("clip-path", "none", "important");
+
         if (el.getAttribute && el.getAttribute("aria-hidden") === "true") {
           el.setAttribute("aria-hidden", "false");
         }
@@ -35,7 +50,7 @@
     }
 
     window.requestAnimationFrame(revealNow);
-    window.setTimeout(revealNow, 160);
+    window.setTimeout(revealNow, 120);
   }
 
   function closeMenu() {
