@@ -2,68 +2,33 @@
 
 :root {
   --nav-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --nav-duration: 0.45s;
+  --nav-duration: 0.52s;
   --nav-brand: #e87200;
   --nav-panel-bg: linear-gradient(165deg, #1a1a1a 0%, #252525 42%, #1f1f1f 100%);
-  --nav-panel-width: 22rem;
 }
 
-/* Full-page click catcher (replaces ::after — pseudo-elements miss clicks) */
-#nav-menu-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 900;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity var(--nav-duration) var(--nav-ease),
-    visibility var(--nav-duration) var(--nav-ease);
+/* No page blur/scrim — keep background scrollable */
+
+/* Visual polish only — Webflow/tram controls slide animation */
+.side-menu-background {
+  transition: box-shadow var(--nav-duration) var(--nav-ease);
 }
 
-#nav-menu-scrim.is-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  cursor: pointer;
+.side-menu_component {
+  transition: box-shadow var(--nav-duration) var(--nav-ease);
 }
 
-body.nav-menu-open {
-  overflow: hidden;
-}
-
-/* Panel shell — fixed width so it never sweeps full viewport on close */
 .side-menu-background {
   z-index: 950;
-  width: var(--nav-panel-width) !important;
-  max-width: 92vw !important;
   background: var(--nav-panel-bg);
-  border: none !important;
+  border-left: 3px solid var(--nav-brand);
   box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35),
     inset 1px 0 0 rgba(255, 255, 255, 0.06);
-  opacity: 0;
-  visibility: hidden;
-  transition: top var(--nav-duration) var(--nav-ease), opacity 0.2s var(--nav-ease),
-    visibility 0.2s var(--nav-ease), box-shadow var(--nav-duration) var(--nav-ease);
-}
-
-body.nav-menu-open:not(.nav-menu-closing) .side-menu-background {
-  opacity: 1;
-  visibility: visible;
-}
-
-body.nav-menu-closing .side-menu-background {
-  opacity: 0 !important;
-  visibility: hidden !important;
 }
 
 .side-menu_component {
   z-index: 1000;
   box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
-  transition: top var(--nav-duration) var(--nav-ease), opacity 0.2s var(--nav-ease),
-    visibility 0.2s var(--nav-ease);
 }
 
 /* Menu panel typography on dark background */
@@ -79,21 +44,24 @@ body.nav-menu-closing .side-menu-background {
 
 .side-menu_component .underline {
   background-color: rgba(232, 114, 0, 0.35);
+  transition: transform 0.35s var(--nav-ease), background-color 0.25s ease;
 }
 
 .side-menu_component .text-size-large.text-color-white.w--current {
   color: #fff;
 }
 
-/* Close control — no black border (was causing sweep flash) */
+/* Close control */
 .side-menu_component .close-button {
-  border: none !important;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s var(--nav-ease), transform 0.3s var(--nav-ease);
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s var(--nav-ease), background-color 0.3s var(--nav-ease),
+    transform 0.3s var(--nav-ease);
 }
 
 .side-menu_component .close-button:hover {
-  background-color: rgba(232, 114, 0, 0.2);
+  border-color: var(--nav-brand);
+  background-color: rgba(232, 114, 0, 0.15);
   transform: scale(1.05);
 }
 
@@ -129,11 +97,9 @@ body.nav-menu-open .menu-button .menu-icon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #nav-menu-scrim,
   .menu-button,
   .menu-button .menu-icon,
-  .close-button,
-  .side-menu-background {
+  .close-button {
     transition-duration: 0.01ms !important;
   }
 }
