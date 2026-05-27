@@ -12,19 +12,30 @@
 
     // Webflow interactions can leave inline opacity/visibility/transform styles
     // on menu children. Clear them so content always appears.
-    window.requestAnimationFrame(function () {
+    function revealNow() {
       var panel = document.querySelector(".side-menu_component");
       if (!panel) return;
 
-      // Broad reset: ensure every descendant is eligible to render.
+      // Broad reset: clear inline styles that commonly hide Webflow elements.
       panel.querySelectorAll("*").forEach(function (el) {
-        if (!el || !el.style) return;
-        el.style.opacity = "1";
-        el.style.visibility = "visible";
-        el.style.pointerEvents = "auto";
-        if (el.style.transform) el.style.transform = "none";
+        if (!el) return;
+        if (el.style) {
+          el.style.display = "";
+          el.style.opacity = "";
+          el.style.visibility = "";
+          el.style.pointerEvents = "";
+          el.style.transform = "";
+        }
+
+        // If Webflow set aria-hidden=true, clear it.
+        if (el.getAttribute && el.getAttribute("aria-hidden") === "true") {
+          el.setAttribute("aria-hidden", "false");
+        }
       });
-    });
+    }
+
+    window.requestAnimationFrame(revealNow);
+    window.setTimeout(revealNow, 160);
   }
 
   function closeMenu() {
