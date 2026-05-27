@@ -111,8 +111,10 @@
     if (document.body.classList.contains(OPEN_CLASS)) return;
 
     document.body.classList.add(OPEN_CLASS);
+    // Lock scroll while the menu is open.
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
+    document.body.style.position = "relative";
 
     applyOpen();
 
@@ -126,11 +128,24 @@
 
     document.body.classList.remove(OPEN_CLASS);
     // Force scroll back on close even if Webflow changed it.
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
+    restoreScroll();
+    // Webflow sometimes re-applies scroll locks on the same tick.
+    window.setTimeout(restoreScroll, 50);
+    window.setTimeout(restoreScroll, 300);
 
     getScrim().classList.remove("is-visible");
     applyClosed();
+  }
+
+  function restoreScroll() {
+    // Use explicit `auto` so any lingering inline `hidden` from Webflow is overridden.
+    document.body.style.overflow = "auto";
+    document.documentElement.style.overflow = "auto";
+    // Reset any common “lock scroll” patterns.
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.height = "";
   }
 
   function bind() {
