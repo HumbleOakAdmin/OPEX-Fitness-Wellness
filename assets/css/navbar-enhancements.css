@@ -67,8 +67,12 @@ body.nav-menu-open .side-menu_component * {
 .side-menu-background {
   z-index: 950;
   background: var(--nav-panel-bg);
-  border-left: 3px solid var(--nav-brand);
+  border: none !important;
   box-shadow: none;
+}
+
+body.nav-menu-open .side-menu-background {
+  border-left: 3px solid var(--nav-brand) !important;
 }
 
 .side-menu_component {
@@ -209,10 +213,22 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
   color: #fff;
 }
 
-/* Close control */
+/* Close control — fixed square (JS must not set height:auto on this) */
 .side-menu_component .close-button {
-  border-color: rgba(255, 255, 255, 0.35);
-  background-color: rgba(255, 255, 255, 0.08);
+  box-sizing: border-box !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  min-width: 2.5rem !important;
+  min-height: 2.5rem !important;
+  max-width: 2.5rem !important;
+  max-height: 2.5rem !important;
+  flex: 0 0 2.5rem !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 100vw !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  background-size: 1rem 1rem !important;
   transition: border-color 0.3s var(--nav-ease), background-color 0.3s var(--nav-ease),
     transform 0.3s var(--nav-ease);
 }
@@ -223,23 +239,44 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
   transform: scale(1.05);
 }
 
-/* Menu trigger — top-right of viewport */
+/* Menu trigger — top-right of viewport (reset Webflow inset stretch) */
 .menu-button {
   position: fixed !important;
   top: 1rem !important;
   right: 1.25rem !important;
   left: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   z-index: 1200 !important;
   transition: transform 0.3s var(--nav-ease), opacity 0.3s ease;
+}
+
+.menu-button .menu-icon {
+  display: block !important;
+  width: 2.5rem !important;
+  height: auto !important;
+  transition: transform 0.35s var(--nav-ease), opacity 0.35s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
 }
 
 .menu-button:hover .menu-icon {
   transform: scale(1.06);
 }
 
-.menu-button .menu-icon {
-  transition: transform 0.35s var(--nav-ease), opacity 0.35s ease;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+/* Keep drawer narrow on mobile (Webflow sets background to width:100%) */
+@media screen and (max-width: 991px) {
+  .side-menu-background,
+  .side-menu_component {
+    width: 22rem !important;
+    max-width: 92vw !important;
+  }
 }
 
 body.nav-menu-open .menu-button .menu-icon {

@@ -3,7 +3,7 @@
 
   var cssLink = document.querySelector('link[href*="navbar-enhancements.css"]');
   if (cssLink && cssLink.href.indexOf("v=") === -1) {
-    cssLink.href += (cssLink.href.indexOf("?") === -1 ? "?" : "&") + "v=2";
+    cssLink.href += (cssLink.href.indexOf("?") === -1 ? "?" : "&") + "v=3";
   }
 
   // Custom navbar controller for the GitHub-hosted site.
@@ -53,6 +53,7 @@
 
       panel.querySelectorAll("*").forEach(function (el) {
         if (!el || !el.style) return;
+        if (el.classList.contains("close-button")) return;
 
         el.style.setProperty("opacity", "1", "important");
         el.style.setProperty("visibility", "visible", "important");
@@ -70,15 +71,52 @@
           el.setAttribute("aria-hidden", "false");
         }
       });
+
+      var closeBtn = panel.querySelector(".close-button");
+      if (closeBtn) {
+        closeBtn.style.removeProperty("height");
+        closeBtn.style.removeProperty("max-height");
+        closeBtn.style.removeProperty("display");
+      }
     }
 
     window.requestAnimationFrame(revealNow);
     window.setTimeout(revealNow, 120);
   }
 
+  var INLINE_PROPS = [
+    "opacity",
+    "visibility",
+    "transform",
+    "pointer-events",
+    "display",
+    "height",
+    "max-height",
+    "overflow",
+    "clip-path",
+  ];
+
+  function clearDrawerInlineStyles() {
+    var panel = document.querySelector(".side-menu_component");
+    var bg = document.querySelector(".side-menu-background");
+    [panel, bg].forEach(function (root) {
+      if (!root) return;
+      INLINE_PROPS.forEach(function (prop) {
+        root.style.removeProperty(prop);
+      });
+      root.querySelectorAll("*").forEach(function (el) {
+        if (!el || !el.style) return;
+        INLINE_PROPS.forEach(function (prop) {
+          el.style.removeProperty(prop);
+        });
+      });
+    });
+  }
+
   function closeMenu() {
     document.body.classList.remove(OPEN_CLASS);
     setDrawerPosition(false);
+    clearDrawerInlineStyles();
   }
 
   function bind() {
