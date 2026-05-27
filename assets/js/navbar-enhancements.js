@@ -7,8 +7,26 @@
   var CONTENT_SELECTORS =
     ".side-menu-wrapper, .side-menu-item-wrapper, .side-menu-text-wrap, .text-size-large, .text-size-tiny, .hero-container-banner, .banner-heading, .banner-cta, .logo.small, .close-button";
 
+  function setDrawerPosition(open) {
+    var panel = document.querySelector(".side-menu_component");
+    var bg = document.querySelector(".side-menu-background");
+    var transform = open ? "translate3d(0, 0, 0)" : "translate3d(100%, 0, 0)";
+
+    if (panel) {
+      panel.style.setProperty("right", "0", "important");
+      panel.style.setProperty("left", "auto", "important");
+      panel.style.setProperty("transform", transform, "important");
+    }
+    if (bg) {
+      bg.style.setProperty("right", "0", "important");
+      bg.style.setProperty("left", "auto", "important");
+      bg.style.setProperty("transform", transform, "important");
+    }
+  }
+
   function openMenu() {
     document.body.classList.add(OPEN_CLASS);
+    setDrawerPosition(true);
 
     // Hard force show menu content (override any Webflow inline/CSS hiding).
     function revealNow() {
@@ -55,6 +73,7 @@
 
   function closeMenu() {
     document.body.classList.remove(OPEN_CLASS);
+    setDrawerPosition(false);
   }
 
   function bind() {

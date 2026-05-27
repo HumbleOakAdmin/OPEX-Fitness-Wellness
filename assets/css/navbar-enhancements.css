@@ -24,18 +24,18 @@
 
 .side-menu-background,
 .side-menu_component {
-  /* Force consistent drawer sizing and placement */
+  /* Right-side drawer */
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
-  bottom: 0 !important;
   left: auto !important;
+  bottom: 0 !important;
   width: 22rem !important;
   max-width: 92vw !important;
   height: 100vh !important;
 
-  /* Closed state: off-canvas and non-interactive */
-  transform: translateX(110%) !important;
+  /* Closed: slide off-screen to the right */
+  transform: translate3d(100%, 0, 0) !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
@@ -49,7 +49,7 @@
 
 body.nav-menu-open .side-menu-background,
 body.nav-menu-open .side-menu_component {
-  transform: translateX(0) !important;
+  transform: translate3d(0, 0, 0) !important;
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
@@ -172,8 +172,13 @@ body.nav-menu-open > section:not(.side-menu_component):not(.side-menu-background
   transform: scale(1.05);
 }
 
-/* Menu trigger */
+/* Menu trigger — top-right of viewport */
 .menu-button {
+  position: fixed !important;
+  top: 1rem !important;
+  right: 1.25rem !important;
+  left: auto !important;
+  z-index: 1200 !important;
   transition: transform 0.3s var(--nav-ease), opacity 0.3s ease;
 }
 
