@@ -86,6 +86,34 @@ body.nav-menu-open .side-menu_component {
   box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
 }
 
+/* Navbar shell: fixed overlay only — zero layout height (menu icon is position:fixed) */
+.navbar.div-block {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+.navbar.div-block .navbar_component {
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.navbar.div-block .menu-button {
+  pointer-events: auto !important;
+}
+
 /* Compact top bar for menu icon only (not full drawer height) */
 body.nav-menu-open .navbar.div-block {
   position: fixed !important;
@@ -129,21 +157,21 @@ body.nav-menu-open .side-menu-background {
   height: 100vh !important;
 }
 
-/* Page content sits just under menu icon row */
+/* No extra top offset — menu floats over content; undo prior section padding rules */
+.navbar.div-block ~ section,
 .navbar.div-block ~ .hero-section,
 .navbar.div-block ~ .contact-us,
-.navbar.div-block ~ .contactformsection,
-.navbar.div-block ~ section:not(.side-menu_component):not(.side-menu-background) {
+.navbar.div-block ~ .contactformsection {
   margin-top: 0 !important;
-  padding-top: 3.25rem !important;
+  padding-top: 0 !important;
 }
 
+body.nav-menu-open > section,
 body.nav-menu-open > .hero-section,
 body.nav-menu-open > .contact-us,
-body.nav-menu-open > .contactformsection,
-body.nav-menu-open > section:not(.side-menu_component):not(.side-menu-background) {
+body.nav-menu-open > .contactformsection {
   margin-top: 0 !important;
-  padding-top: 3.25rem !important;
+  padding-top: 0 !important;
 }
 
 /* Menu panel typography on dark background */
