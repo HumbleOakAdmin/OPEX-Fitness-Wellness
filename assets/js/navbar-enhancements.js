@@ -89,6 +89,15 @@
     getScrim();
     observePanel();
 
+    document.addEventListener("click", function (e) {
+      // Close when user clicks anywhere outside the side menu.
+      if (!document.body.classList.contains(OPEN_CLASS)) return;
+      if (e.target.closest(".side-menu_component")) return;
+      if (e.target.closest(".menu-button")) return;
+      if (e.target.closest(".close-button")) return;
+      closeMenu();
+    });
+
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && document.body.classList.contains(OPEN_CLASS)) {
         closeMenu();

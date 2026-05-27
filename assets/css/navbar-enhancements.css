@@ -40,10 +40,7 @@ body.nav-menu-open {
   width: var(--nav-panel-width) !important;
   max-width: 92vw !important;
   background: var(--nav-panel-bg);
-  border-left: 3px solid var(--nav-brand);
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
+  border: none !important;
   box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35),
     inset 1px 0 0 rgba(255, 255, 255, 0.06);
   opacity: 0;
@@ -88,7 +85,7 @@ body.nav-menu-closing .side-menu-background {
 
 /* Close control — no black border (was causing sweep flash) */
 .side-menu_component .close-button {
-  border: none;
+  border: none !important;
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color 0.3s var(--nav-ease), transform 0.3s var(--nav-ease);
 }
