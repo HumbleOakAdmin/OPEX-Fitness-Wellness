@@ -239,18 +239,18 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
   transform: scale(1.05);
 }
 
-/* Menu trigger — top-right of viewport (reset Webflow inset stretch) */
+/* Menu trigger — top-right of viewport (do not use inset: auto — it clears top/right) */
 .menu-button {
   position: fixed !important;
   top: 1rem !important;
   right: 1.25rem !important;
   left: auto !important;
   bottom: auto !important;
-  inset: auto !important;
   width: auto !important;
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
+  margin: 0 !important;
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
@@ -276,6 +276,11 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
   .side-menu_component {
     width: 22rem !important;
     max-width: 92vw !important;
+  }
+
+  .menu-button {
+    right: 1rem !important;
+    left: auto !important;
   }
 }
 

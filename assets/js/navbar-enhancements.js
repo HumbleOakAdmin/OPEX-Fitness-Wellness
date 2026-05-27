@@ -3,7 +3,7 @@
 
   var cssLink = document.querySelector('link[href*="navbar-enhancements.css"]');
   if (cssLink && cssLink.href.indexOf("v=") === -1) {
-    cssLink.href += (cssLink.href.indexOf("?") === -1 ? "?" : "&") + "v=3";
+    cssLink.href += (cssLink.href.indexOf("?") === -1 ? "?" : "&") + "v=4";
   }
 
   // Custom navbar controller for the GitHub-hosted site.
