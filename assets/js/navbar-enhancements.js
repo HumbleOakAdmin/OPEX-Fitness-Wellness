@@ -9,19 +9,22 @@
 
   function openMenu() {
     document.body.classList.add(OPEN_CLASS);
+
     // Webflow interactions can leave inline opacity/visibility/transform styles
-    // on menu children. Clear those so content always appears.
-    var panel = document.querySelector(".side-menu_component");
-    if (panel) {
-      panel.querySelectorAll(CONTENT_SELECTORS).forEach(function (el) {
+    // on menu children. Clear them so content always appears.
+    window.requestAnimationFrame(function () {
+      var panel = document.querySelector(".side-menu_component");
+      if (!panel) return;
+
+      // Broad reset: ensure every descendant is eligible to render.
+      panel.querySelectorAll("*").forEach(function (el) {
         if (!el || !el.style) return;
         el.style.opacity = "1";
         el.style.visibility = "visible";
-        if (el.style.transform && el.style.transform !== "none") {
-          el.style.transform = "none";
-        }
+        el.style.pointerEvents = "auto";
+        if (el.style.transform) el.style.transform = "none";
       });
-    }
+    });
   }
 
   function closeMenu() {
