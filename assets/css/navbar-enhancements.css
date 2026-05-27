@@ -55,6 +55,15 @@ body.nav-menu-open .side-menu_component {
   pointer-events: auto !important;
 }
 
+/* Force visible menu content on open (overrides any leftover inline styles) */
+body.nav-menu-open .side-menu_component * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  display: revert !important;
+}
+
 .side-menu-background {
   z-index: 950;
   background: var(--nav-panel-bg);
