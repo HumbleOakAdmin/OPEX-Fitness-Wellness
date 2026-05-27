@@ -18,33 +18,62 @@
   transition: box-shadow var(--nav-duration) var(--nav-ease);
 }
 
-/* Menu layers should never block page when closed */
+/* === Custom, non-Webflow navbar behavior ===
+   We fully control open/close with body.nav-menu-open.
+   No blur, no scroll lock, no click-off required. */
+
 .side-menu-background,
 .side-menu_component {
-  pointer-events: none;
+  /* Force consistent drawer sizing and placement */
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  width: 22rem !important;
+  max-width: 92vw !important;
+  height: 100vh !important;
+
+  /* Closed state: off-canvas and non-interactive */
+  transform: translateX(110%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+
+  transition:
+    transform var(--nav-duration) var(--nav-ease),
+    opacity 0.2s var(--nav-ease),
+    visibility 0.2s var(--nav-ease);
+  will-change: transform, opacity;
 }
 
 body.nav-menu-open .side-menu-background,
 body.nav-menu-open .side-menu_component {
-  pointer-events: auto;
-}
-
-/* When closed, remove from layout (prevents invisible overlay + shadow sweep) */
-body:not(.nav-menu-open) .side-menu-background,
-body:not(.nav-menu-open) .side-menu_component {
-  display: none;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .side-menu-background {
   z-index: 950;
   background: var(--nav-panel-bg);
   border-left: 3px solid var(--nav-brand);
-  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35),
-    inset 1px 0 0 rgba(255, 255, 255, 0.06);
+  box-shadow: none;
 }
 
 .side-menu_component {
   z-index: 1000;
+  box-shadow: none;
+}
+
+/* Only show shadows when open (prevents “shadow sweep” artifact) */
+body.nav-menu-open .side-menu-background {
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35),
+    inset 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+body.nav-menu-open .side-menu_component {
   box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
 }
 
