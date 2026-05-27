@@ -161,20 +161,31 @@ body.nav-menu-open .side-menu-background {
   height: 100vh !important;
 }
 
-/* Remove top gap — beats older cached rules that used section:not() + 3.25rem */
+/* Remove top gap on hero/banner sections only (not every .section) */
 body .navbar.div-block ~ section.hero-section,
 body .navbar.div-block ~ section.contact-us,
 body .navbar.div-block ~ section.contactformsection,
-body .navbar.div-block ~ section:not(.side-menu_component):not(.side-menu-background) {
+body .navbar.div-block ~ section[class*="abby-"],
+body .navbar.div-block ~ section.book,
+body .navbar.div-block ~ section.how-it-works,
+body .navbar.div-block ~ section.meet-the-team,
+body .navbar.div-block ~ section.what-is-opex,
+body .navbar.div-block ~ section.opex-community,
+body .navbar.div-block ~ section.remote-pt,
+body .navbar.div-block ~ section.prenatal-chiro,
+body .navbar.div-block ~ section.faq-section {
   margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
-body.nav-menu-open > section.hero-section,
-body.nav-menu-open > section.contact-us,
-body.nav-menu-open > section.contactformsection,
-body.nav-menu-open > section:not(.side-menu_component):not(.side-menu-background) {
-  margin-top: 0 !important;
+body .navbar.div-block ~ section.hero-section,
+body .navbar.div-block ~ section[class*="abby-"],
+body .navbar.div-block ~ section.book,
+body .navbar.div-block ~ section.how-it-works,
+body .navbar.div-block ~ section.meet-the-team,
+body .navbar.div-block ~ section.what-is-opex,
+body .navbar.div-block ~ section.opex-community,
+body .navbar.div-block ~ section.remote-pt,
+body .navbar.div-block ~ section.prenatal-chiro {
   padding-top: 0 !important;
 }
 
@@ -207,6 +218,11 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
 .side-menu_component .underline {
   background-color: rgba(232, 114, 0, 0.35);
   transition: transform 0.35s var(--nav-ease), background-color 0.25s ease;
+}
+
+body.nav-menu-open .side-menu_component .underline {
+  transform: none !important;
+  opacity: 1 !important;
 }
 
 .side-menu_component .text-size-large.text-color-white.w--current {
@@ -242,8 +258,8 @@ body .navbar.div-block ~ section.contact-us .bannerheadingcont {
 /* Menu trigger — top-right of viewport (do not use inset: auto — it clears top/right) */
 .menu-button {
   position: fixed !important;
-  top: 1rem !important;
-  right: 1.25rem !important;
+  top: max(1rem, env(safe-area-inset-top, 0px)) !important;
+  right: max(1.25rem, env(safe-area-inset-right, 0px)) !important;
   left: auto !important;
   bottom: auto !important;
   width: auto !important;

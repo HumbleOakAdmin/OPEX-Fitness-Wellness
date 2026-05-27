@@ -3,8 +3,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const CSS =
+const NAV_CSS =
   '<link href="/OPEX-Fitness-Wellness/assets/css/navbar-enhancements.css" rel="stylesheet" type="text/css"/>';
+const POLISH_CSS =
+  '<link href="/OPEX-Fitness-Wellness/assets/css/site-polish.css" rel="stylesheet" type="text/css"/>';
 const JS =
   '<script src="/OPEX-Fitness-Wellness/assets/js/navbar-enhancements.js" type="text/javascript"></script>';
 
@@ -22,7 +24,13 @@ for (const file of walkHtml(ROOT)) {
   if (!html.includes('navbar-enhancements.css')) {
     html = html.replace(
       /(<link href="\/OPEX-Fitness-Wellness\/assets\/css\/opex-abbotsford\.webflow\.shared[^"]+\.css" rel="stylesheet" type="text\/css"\/>)/,
-      `$1${CSS}`
+      `$1${NAV_CSS}`
+    );
+  }
+  if (!html.includes('site-polish.css')) {
+    html = html.replace(
+      /(<link href="\/OPEX-Fitness-Wellness\/assets\/css\/navbar-enhancements\.css[^"]*" rel="stylesheet" type="text\/css"\/>)/,
+      `$1${POLISH_CSS}`
     );
   }
   if (!html.includes('navbar-enhancements.js')) {

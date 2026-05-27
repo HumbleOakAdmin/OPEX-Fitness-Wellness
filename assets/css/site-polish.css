@@ -1,0 +1,270 @@
+/* OPEX site-wide housekeeping — layout & content unchanged */
+
+:root {
+  --opex-brand: #e87200;
+  --opex-text: #1a1a1a;
+  --opex-space-sm: 0.75rem;
+  --opex-space-md: 1.25rem;
+  --opex-space-lg: 2rem;
+  --opex-radius: 10px;
+  --opex-shadow-soft: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Prevent horizontal scroll from 100vw wrappers */
+html {
+  overflow-x: clip;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Readable body copy (Webflow often uses line-height: 1) */
+.subsection-text,
+.subsection-text-s,
+.subsection-text.full-width,
+.grid-text,
+.review-txt,
+.subtext,
+.subtext-body,
+.family-text,
+.faq-answer,
+.contact-div .subsection-text {
+  line-height: 1.5 !important;
+}
+
+/* Section rhythm */
+.section {
+  padding: var(--opex-space-md) var(--opex-space-md) !important;
+}
+
+.content-wrap,
+.header-wrapper {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.content-grid-wrapper {
+  padding-left: clamp(1rem, 4vw, 4rem) !important;
+  padding-right: clamp(1rem, 4vw, 4rem) !important;
+}
+
+.orange-section,
+.orange-section-ii {
+  margin-bottom: 0 !important;
+}
+
+.related-services {
+  padding-left: clamp(1rem, 6vw, 12.5rem) !important;
+  padding-right: clamp(1rem, 6vw, 12.5rem) !important;
+}
+
+.related-services-grid {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.contactformsection {
+  gap: 1.5rem;
+  padding: var(--opex-space-md) !important;
+}
+
+.contact-div {
+  padding: var(--opex-space-md) 1rem !important;
+}
+
+.map-master-wrap,
+.map-master-wrap-ii,
+.map-master-wrap-iii {
+  padding-block: var(--opex-space-md) !important;
+  gap: var(--opex-space-md);
+}
+
+/* Maps & embeds (fixes invalid 350rem iframe attrs from export) */
+.code-embed-2 iframe,
+.code-embed-5 iframe,
+.w-embed.w-iframe iframe,
+.map-master-wrap iframe,
+.map-master-wrap-iii iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 35rem;
+  height: 250px !important;
+  min-height: 220px;
+  margin-inline: auto;
+  border: 0;
+  border-radius: var(--opex-radius);
+}
+
+.code-embed-4,
+.code-embed-4 iframe {
+  width: 100% !important;
+  max-width: 100%;
+  min-height: 420px;
+  border: 0;
+  border-radius: var(--opex-radius);
+}
+
+.ms-forms-embed iframe {
+  width: 100% !important;
+  max-width: 100%;
+  min-height: 480px;
+  border-radius: var(--opex-radius);
+}
+
+.video-background,
+.code-embed iframe {
+  border-radius: var(--opex-radius);
+}
+
+/* CTA tap targets */
+.we-are-cta,
+.services-cta,
+.heroctabutton,
+.heroctabuttonmaster,
+.banner-cta,
+.live-chat-button---brix {
+  line-height: 1.35 !important;
+  min-height: 2.75rem;
+}
+
+/* Softer card shadows */
+.services-card,
+.review-card,
+.team-card,
+.image-7,
+.image-8 {
+  box-shadow: var(--opex-shadow-soft) !important;
+}
+
+/* Footer */
+.section-2 {
+  padding: var(--opex-space-lg) 1.25rem 2rem !important;
+  gap: 1.25rem;
+}
+
+.footer-text {
+  line-height: 1.5 !important;
+}
+
+.footer-link {
+  line-height: 1.45 !important;
+  display: inline-block;
+  padding-block: 0.15rem;
+}
+
+.footer-link:focus-visible,
+.intext-link:focus-visible,
+a.w-button:focus-visible {
+  outline: 2px solid var(--opex-brand);
+  outline-offset: 2px;
+}
+
+.link-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-logo-wrap img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* FAQ page tint */
+body.body-2 {
+  background-color: rgba(232, 114, 0, 0.08) !important;
+}
+
+.faq-section {
+  padding-top: 1rem;
+}
+
+/* WhatsApp widget — hide stray form, avoid menu overlap */
+.live-chat-wrapper---brix .w-form {
+  display: none !important;
+}
+
+.live-chat-wrapper---brix {
+  z-index: 900;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.subject-img,
+.team-img {
+  border-radius: var(--opex-radius);
+}
+
+/* Form fields on contact page */
+.contactformsection .text-field,
+.contactformsection .text-area {
+  border-radius: 8px;
+}
+
+.contactformsection .text-field:focus,
+.contactformsection .text-area:focus {
+  border-color: var(--opex-brand);
+  box-shadow: 0 0 0 2px rgba(232, 114, 0, 0.2);
+}
+
+/* Mobile */
+@media screen and (max-width: 991px) {
+  .content-grid-wrapper {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  .contactformsection {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header-wrapper,
+  .subsection-text-s,
+  .map-master-wrap,
+  .section-ii,
+  .bannerheadingcont,
+  .divblockiv,
+  .code-embed-2 {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .footer-text,
+  .footer-link {
+    font-size: 0.8125rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .we-are-heading {
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .family-text {
+    font-size: 0.8125rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .live-chat-wrapper---brix {
+    right: 1rem !important;
+    bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  .herocta-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .heroctabutton {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
