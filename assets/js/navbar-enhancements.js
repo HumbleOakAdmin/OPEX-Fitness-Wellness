@@ -12,7 +12,8 @@
   var MENU_BUTTON_SELECTOR = ".menu-button";
   var CLOSE_BUTTON_SELECTOR = ".close-button";
 
-  var TRANSITION = "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.2s cubic-bezier(0.22, 1, 0.36, 1)";
+  var TRANSITION =
+    "top var(--nav-duration, 0.45s) cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.2s cubic-bezier(0.22, 1, 0.36, 1)";
 
   function getPanel() {
     return document.querySelector(PANEL_SELECTOR);
@@ -49,25 +50,30 @@
     var bg = getBg();
 
     if (bg) {
-      bg.style.setProperty("inset", "0 0 auto auto", "important");
-      bg.style.setProperty("transform", "translateY(-20%)", "important");
+      bg.style.setProperty("top", "-20%", "important");
+      bg.style.setProperty("right", "0", "important");
       bg.style.setProperty("opacity", "0", "important");
       bg.style.setProperty("visibility", "hidden", "important");
       bg.style.setProperty("pointer-events", "none", "important");
       bg.style.setProperty("transition", TRANSITION, "important");
-
-      // Prevent the “box across the window” artifact on small screens.
-      bg.style.setProperty("width", "22rem", "important");
-      bg.style.setProperty("max-width", "92vw", "important");
     }
 
     if (panel) {
-      panel.style.setProperty("inset", "0 0 0 auto", "important");
-      panel.style.setProperty("transform", "translateY(-20rem)", "important");
+      // Side menu base uses `inset: -20rem 0 0 auto;` (top=-20rem, right=0, bottom=0)
+      panel.style.setProperty("top", "-20rem", "important");
+      panel.style.setProperty("right", "0", "important");
+      panel.style.setProperty("bottom", "0", "important");
       panel.style.setProperty("opacity", "0", "important");
       panel.style.setProperty("visibility", "hidden", "important");
       panel.style.setProperty("pointer-events", "none", "important");
       panel.style.setProperty("transition", TRANSITION, "important");
+      // Ensure any Webflow inline opacity/visibility on descendants is reset.
+      panel.querySelectorAll("*").forEach(function (el) {
+        if (el && el.style) {
+          if (el.style.opacity) el.style.opacity = "1";
+          if (el.style.visibility) el.style.visibility = "visible";
+        }
+      });
     }
   }
 
@@ -76,8 +82,8 @@
     var bg = getBg();
 
     if (bg) {
-      bg.style.setProperty("inset", "0 0 auto auto", "important");
-      bg.style.setProperty("transform", "translateY(0)", "important");
+      bg.style.setProperty("top", "0", "important");
+      bg.style.setProperty("right", "0", "important");
       bg.style.setProperty("opacity", "1", "important");
       bg.style.setProperty("visibility", "visible", "important");
       bg.style.setProperty("pointer-events", "auto", "important");
@@ -85,12 +91,19 @@
     }
 
     if (panel) {
-      panel.style.setProperty("inset", "0 0 0 auto", "important");
-      panel.style.setProperty("transform", "translateY(0)", "important");
+      panel.style.setProperty("top", "0", "important");
+      panel.style.setProperty("right", "0", "important");
+      panel.style.setProperty("bottom", "0", "important");
       panel.style.setProperty("opacity", "1", "important");
       panel.style.setProperty("visibility", "visible", "important");
       panel.style.setProperty("pointer-events", "auto", "important");
       panel.style.setProperty("transition", TRANSITION, "important");
+      panel.querySelectorAll("*").forEach(function (el) {
+        if (el && el.style) {
+          if (el.style.opacity) el.style.opacity = "1";
+          if (el.style.visibility) el.style.visibility = "visible";
+        }
+      });
     }
   }
 
@@ -99,6 +112,7 @@
 
     document.body.classList.add(OPEN_CLASS);
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     applyOpen();
 
@@ -113,6 +127,7 @@
     document.body.classList.remove(OPEN_CLASS);
     // Force scroll back on close even if Webflow changed it.
     document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
 
     getScrim().classList.remove("is-visible");
     applyClosed();
