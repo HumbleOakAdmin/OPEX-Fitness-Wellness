@@ -93,9 +93,9 @@ body.nav-menu-open .navbar.div-block {
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  height: 4.75rem !important;
+  height: 3.25rem !important;
   min-height: 0 !important;
-  max-height: 4.75rem !important;
+  max-height: 3.25rem !important;
   overflow: visible !important;
   background: transparent !important;
   z-index: 1100 !important;
@@ -129,13 +129,21 @@ body.nav-menu-open .side-menu-background {
   height: 100vh !important;
 }
 
-/* Page content starts directly under top bar (no giant black gap) */
+/* Page content sits just under menu icon row */
+.navbar.div-block ~ .hero-section,
+.navbar.div-block ~ .contact-us,
+.navbar.div-block ~ .contactformsection,
+.navbar.div-block ~ section:not(.side-menu_component):not(.side-menu-background) {
+  margin-top: 0 !important;
+  padding-top: 3.25rem !important;
+}
+
 body.nav-menu-open > .hero-section,
 body.nav-menu-open > .contact-us,
 body.nav-menu-open > .contactformsection,
 body.nav-menu-open > section:not(.side-menu_component):not(.side-menu-background) {
   margin-top: 0 !important;
-  padding-top: 4.75rem !important;
+  padding-top: 3.25rem !important;
 }
 
 /* Menu panel typography on dark background */
