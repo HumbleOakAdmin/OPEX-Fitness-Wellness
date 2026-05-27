@@ -18,7 +18,7 @@
   transition: box-shadow var(--nav-duration) var(--nav-ease);
 }
 
-/* Ensure closed navbar never blocks underlying page clicks */
+/* Menu layers should never block page when closed */
 .side-menu-background,
 .side-menu_component {
   pointer-events: none;
@@ -27,6 +27,12 @@
 body.nav-menu-open .side-menu-background,
 body.nav-menu-open .side-menu_component {
   pointer-events: auto;
+}
+
+/* When closed, remove from layout (prevents invisible overlay + shadow sweep) */
+body:not(.nav-menu-open) .side-menu-background,
+body:not(.nav-menu-open) .side-menu_component {
+  display: none;
 }
 
 .side-menu-background {

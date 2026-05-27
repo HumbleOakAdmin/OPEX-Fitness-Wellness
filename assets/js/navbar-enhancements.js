@@ -1,71 +1,74 @@
 (function () {
   "use strict";
 
+  // We don't rely on Webflow's internal nav overlay state.
+  // Instead, we toggle a class and ensure the hidden menu can't block clicks.
   var OPEN_CLASS = "nav-menu-open";
+  var DURATION_MS = 520;
 
-  function isPanelOpen(panel) {
-    if (!panel) return false;
-    var opacity = panel.style.opacity;
-    if (opacity !== "" && parseFloat(opacity) < 0.05) return false;
+  function setDisplay(open) {
+    var panel = document.querySelector(".side-menu_component");
+    var bg = document.querySelector(".side-menu-background");
+    if (!panel || !bg) return;
 
-    var transform = panel.style.transform || "";
-    if (!transform || transform === "none") {
-      return parseFloat(window.getComputedStyle(panel).opacity) > 0.05;
+    if (open) {
+      // Make visible immediately so Webflow animation can run.
+      bg.style.display = "flex";
+      panel.style.display = "flex";
+      bg.style.visibility = "visible";
+      panel.style.visibility = "visible";
+      bg.style.pointerEvents = "auto";
+      panel.style.pointerEvents = "auto";
+    } else {
+      // Disable hit-testing immediately; remove from layout after animation.
+      bg.style.pointerEvents = "none";
+      panel.style.pointerEvents = "none";
+      window.setTimeout(function () {
+        bg.style.display = "none";
+        panel.style.display = "none";
+      }, DURATION_MS);
     }
-
-    var match = transform.match(/translate(?:3d)?\([^,]+,\s*([^,)]+)/);
-    if (match) {
-      var y = match[1].trim();
-      if (y.endsWith("%") && Math.abs(parseFloat(y)) > 20) return false;
-    }
-
-    match = transform.match(/translateX\(([^)]+)\)/);
-    if (match) {
-      var x = match[1].trim();
-      if (x.endsWith("%") && parseFloat(x) > 20) return false;
-      if (x.endsWith("px") && parseFloat(x) > 40) return false;
-    }
-
-    match = transform.match(/matrix\([^,]+,\s*[^,]+,\s*[^,]+,\s*[^,]+,\s*([^,]+)/);
-    if (match) {
-      var tx = parseFloat(match[1]);
-      if (!isNaN(tx) && tx > 80) return false;
-    }
-
-    return true;
   }
 
-  function syncMenuState() {
-    var panel = document.querySelector(".side-menu_component");
-    var open = isPanelOpen(panel);
-    document.body.classList.toggle(OPEN_CLASS, open);
+  function openMenu() {
+    document.body.classList.add(OPEN_CLASS);
+    setDisplay(true);
   }
 
   function closeMenu() {
+    document.body.classList.remove(OPEN_CLASS);
+    setDisplay(false);
     document.querySelectorAll(".close-button").forEach(function (btn) {
       btn.click();
     });
-    window.setTimeout(syncMenuState, 50);
-  }
-
-  function observePanel() {
-    var panel = document.querySelector(".side-menu_component");
-    if (!panel) return;
-
-    var observer = new MutationObserver(function () {
-      syncMenuState();
-    });
-
-    observer.observe(panel, {
-      attributes: true,
-      attributeFilter: ["style", "class"],
-    });
-
-    syncMenuState();
   }
 
   function bind() {
-    observePanel();
+    // Initialize as closed: prevent invisible panel from blocking clicks.
+    setDisplay(false);
+
+    // Force our open/close behavior (X closes; no click-off required).
+    document.addEventListener(
+      "click",
+      function (e) {
+        var menuBtn = e.target.closest(".menu-button");
+        if (menuBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          openMenu();
+          return;
+        }
+
+        var closeBtn = e.target.closest(".close-button");
+        if (closeBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+          return;
+        }
+      },
+      true
+    );
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && document.body.classList.contains(OPEN_CLASS)) {
