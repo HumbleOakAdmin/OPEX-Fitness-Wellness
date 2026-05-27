@@ -18,6 +18,17 @@
   transition: box-shadow var(--nav-duration) var(--nav-ease);
 }
 
+/* Ensure closed navbar never blocks underlying page clicks */
+.side-menu-background,
+.side-menu_component {
+  pointer-events: none;
+}
+
+body.nav-menu-open .side-menu-background,
+body.nav-menu-open .side-menu_component {
+  pointer-events: auto;
+}
+
 .side-menu-background {
   z-index: 950;
   background: var(--nav-panel-bg);
