@@ -1,0 +1,126 @@
+/* OPEX navbar — smoother motion & refined open panel (layout unchanged) */
+
+:root {
+  --nav-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-duration: 0.52s;
+  --nav-brand: #e87200;
+  --nav-panel-bg: linear-gradient(165deg, #1a1a1a 0%, #252525 42%, #1f1f1f 100%);
+}
+
+/* Dim page behind open menu */
+.navbar.div-block::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--nav-duration) var(--nav-ease),
+    visibility var(--nav-duration) var(--nav-ease);
+}
+
+body.nav-menu-open .navbar.div-block::after {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Smoother slide/fade (Webflow still drives transform; this eases it) */
+.side-menu-background,
+.side-menu_component {
+  transition: transform var(--nav-duration) var(--nav-ease),
+    opacity calc(var(--nav-duration) * 0.9) var(--nav-ease),
+    box-shadow var(--nav-duration) var(--nav-ease);
+  will-change: transform, opacity;
+}
+
+.side-menu-background {
+  background: var(--nav-panel-bg);
+  border-left: 3px solid var(--nav-brand);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35),
+    inset 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.side-menu_component {
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Menu panel typography on dark background */
+.side-menu_component .text-size-large.text-color-white {
+  color: #f4f4f4;
+  transition: color 0.25s var(--nav-ease), font-size 0.25s var(--nav-ease);
+}
+
+.side-menu_component .text-size-tiny.text-color-white.text-style-allcaps.text-style-muted {
+  color: var(--nav-brand);
+  letter-spacing: 0.04em;
+}
+
+.side-menu_component .underline {
+  background-color: rgba(232, 114, 0, 0.35);
+  transition: transform 0.35s var(--nav-ease), background-color 0.25s ease;
+}
+
+.side-menu_component .text-size-large.text-color-white.w--current {
+  color: #fff;
+}
+
+/* Close control */
+.side-menu_component .close-button {
+  border-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s var(--nav-ease), background-color 0.3s var(--nav-ease),
+    transform 0.3s var(--nav-ease);
+}
+
+.side-menu_component .close-button:hover {
+  border-color: var(--nav-brand);
+  background-color: rgba(232, 114, 0, 0.15);
+  transform: scale(1.05);
+}
+
+/* Menu trigger */
+.menu-button {
+  transition: transform 0.3s var(--nav-ease), opacity 0.3s ease;
+}
+
+.menu-button:hover .menu-icon {
+  transform: scale(1.06);
+}
+
+.menu-button .menu-icon {
+  transition: transform 0.35s var(--nav-ease), opacity 0.35s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+body.nav-menu-open .menu-button .menu-icon {
+  opacity: 0.85;
+  transform: scale(0.95);
+}
+
+/* Banner chip inside menu */
+.side-menu_component .hero-container-banner {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(232, 114, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.side-menu_component .banner-heading {
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-menu-background,
+  .side-menu_component,
+  .navbar.div-block::after,
+  .menu-button,
+  .menu-button .menu-icon,
+  .close-button {
+    transition-duration: 0.01ms !important;
+  }
+}
