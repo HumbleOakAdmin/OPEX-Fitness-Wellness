@@ -4,9 +4,24 @@
   // Custom navbar controller for the GitHub-hosted site.
   // Does NOT rely on Webflow behavior.
   var OPEN_CLASS = "nav-menu-open";
+  var CONTENT_SELECTORS =
+    ".side-menu-wrapper, .side-menu-item-wrapper, .side-menu-text-wrap, .text-size-large, .text-size-tiny, .hero-container-banner, .banner-heading, .banner-cta, .logo.small, .close-button";
 
   function openMenu() {
     document.body.classList.add(OPEN_CLASS);
+    // Webflow interactions can leave inline opacity/visibility/transform styles
+    // on menu children. Clear those so content always appears.
+    var panel = document.querySelector(".side-menu_component");
+    if (panel) {
+      panel.querySelectorAll(CONTENT_SELECTORS).forEach(function (el) {
+        if (!el || !el.style) return;
+        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        if (el.style.transform && el.style.transform !== "none") {
+          el.style.transform = "none";
+        }
+      });
+    }
   }
 
   function closeMenu() {
