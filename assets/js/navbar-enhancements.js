@@ -53,17 +53,18 @@
       function (e) {
         var menuBtn = e.target.closest(".menu-button");
         if (menuBtn) {
-          e.preventDefault();
-          e.stopPropagation();
-          openMenu();
+          // Do NOT prevent default/stop propagation — Webflow uses this click to animate.
+          // We only ensure the panel exists (display != none) before Webflow runs.
+          setDisplay(true);
+          document.body.classList.add(OPEN_CLASS);
           return;
         }
 
         var closeBtn = e.target.closest(".close-button");
         if (closeBtn) {
-          e.preventDefault();
-          e.stopPropagation();
-          closeMenu();
+          // Let Webflow handle its close animation, then hide the layers.
+          document.body.classList.remove(OPEN_CLASS);
+          setDisplay(false);
           return;
         }
       },
