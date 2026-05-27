@@ -97,12 +97,22 @@ body {
   border-radius: var(--opex-radius);
 }
 
+/* What Is OPEX hero video — not a map embed */
 .code-embed-4,
-.code-embed-4 iframe {
+.code-embed-4 .video-wrapper {
   width: 100% !important;
   max-width: 100%;
   min-height: 420px;
-  border: 0;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.code-embed-4 iframe,
+.code-embed-4 .video-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 420px;
+  border: 0 !important;
   border-radius: var(--opex-radius);
 }
 
@@ -113,9 +123,70 @@ body {
   border-radius: var(--opex-radius);
 }
 
-.video-background,
-.code-embed iframe {
-  border-radius: var(--opex-radius);
+/* Hero background video only — no rounded corners / letterboxing */
+.hero-section {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.hero-section > .code-embed {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  z-index: 0 !important;
+}
+
+.hero-section .video-background {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+}
+
+.hero-section .video-background iframe {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 100vw !important;
+  height: 56.25vw !important;
+  min-width: 177.78vh !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none;
+}
+
+.hero-section .hero-container {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Remote PT — equal-height service cards */
+.other-training-grid {
+  align-items: stretch !important;
+}
+
+.other-training-grid > .how-it-works-wrapper-sub,
+.other-training-grid > .how-it-works-wrapper-sub-ii {
+  min-height: 46rem !important;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.other-training-grid .subtext-body {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.other-training-grid .image-iv {
+  width: 100%;
+  object-fit: cover;
 }
 
 /* CTA tap targets */
