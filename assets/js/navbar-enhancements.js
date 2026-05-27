@@ -1,9 +1,26 @@
 (function () {
   "use strict";
 
+  // This script deliberately bypasses Webflow's nav-open/close behavior.
+  // We manage open/close by directly setting inline styles on the menu panel.
+
   var OPEN_CLASS = "nav-menu-open";
-  var CLOSING_CLASS = "nav-menu-closing";
   var SCRIM_ID = "nav-menu-scrim";
+
+  var PANEL_SELECTOR = ".side-menu_component";
+  var BG_SELECTOR = ".side-menu-background";
+  var MENU_BUTTON_SELECTOR = ".menu-button";
+  var CLOSE_BUTTON_SELECTOR = ".close-button";
+
+  var TRANSITION = "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.2s cubic-bezier(0.22, 1, 0.36, 1)";
+
+  function getPanel() {
+    return document.querySelector(PANEL_SELECTOR);
+  }
+
+  function getBg() {
+    return document.querySelector(BG_SELECTOR);
+  }
 
   function getScrim() {
     var el = document.getElementById(SCRIM_ID);
@@ -11,98 +28,142 @@
       el = document.createElement("div");
       el.id = SCRIM_ID;
       el.setAttribute("aria-hidden", "true");
-      el.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeMenu();
-      });
       document.body.appendChild(el);
+
+      // Close only when the scrim itself was clicked.
+      el.addEventListener(
+        "click",
+        function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+        },
+        true
+      );
     }
     return el;
   }
 
-  function isPanelOpen(panel) {
-    if (!panel) return false;
-    var opacity = panel.style.opacity;
-    if (opacity !== "" && parseFloat(opacity) < 0.05) return false;
+  function applyClosed() {
+    var panel = getPanel();
+    var bg = getBg();
 
-    var transform = panel.style.transform || "";
-    if (!transform || transform === "none") {
-      return parseFloat(window.getComputedStyle(panel).opacity) > 0.05;
+    if (bg) {
+      bg.style.setProperty("inset", "0 0 auto auto", "important");
+      bg.style.setProperty("transform", "translateY(-20%)", "important");
+      bg.style.setProperty("opacity", "0", "important");
+      bg.style.setProperty("visibility", "hidden", "important");
+      bg.style.setProperty("pointer-events", "none", "important");
+      bg.style.setProperty("transition", TRANSITION, "important");
+
+      // Prevent the “box across the window” artifact on small screens.
+      bg.style.setProperty("width", "22rem", "important");
+      bg.style.setProperty("max-width", "92vw", "important");
     }
 
-    var match = transform.match(/translateX\(([^)]+)\)/);
-    if (match) {
-      var x = match[1].trim();
-      if (x.endsWith("%") && parseFloat(x) > 20) return false;
-      if (x.endsWith("px") && parseFloat(x) > 40) return false;
+    if (panel) {
+      panel.style.setProperty("inset", "0 0 0 auto", "important");
+      panel.style.setProperty("transform", "translateY(-20rem)", "important");
+      panel.style.setProperty("opacity", "0", "important");
+      panel.style.setProperty("visibility", "hidden", "important");
+      panel.style.setProperty("pointer-events", "none", "important");
+      panel.style.setProperty("transition", TRANSITION, "important");
     }
-
-    match = transform.match(/matrix\([^,]+,\s*[^,]+,\s*[^,]+,\s*[^,]+,\s*([^,]+)/);
-    if (match) {
-      var tx = parseFloat(match[1]);
-      if (!isNaN(tx) && tx > 80) return false;
-    }
-
-    return true;
   }
 
-  function setOpenState(open) {
-    document.body.classList.toggle(OPEN_CLASS, open);
-    getScrim().classList.toggle("is-visible", open);
+  function applyOpen() {
+    var panel = getPanel();
+    var bg = getBg();
+
+    if (bg) {
+      bg.style.setProperty("inset", "0 0 auto auto", "important");
+      bg.style.setProperty("transform", "translateY(0)", "important");
+      bg.style.setProperty("opacity", "1", "important");
+      bg.style.setProperty("visibility", "visible", "important");
+      bg.style.setProperty("pointer-events", "auto", "important");
+      bg.style.setProperty("transition", TRANSITION, "important");
+    }
+
+    if (panel) {
+      panel.style.setProperty("inset", "0 0 0 auto", "important");
+      panel.style.setProperty("transform", "translateY(0)", "important");
+      panel.style.setProperty("opacity", "1", "important");
+      panel.style.setProperty("visibility", "visible", "important");
+      panel.style.setProperty("pointer-events", "auto", "important");
+      panel.style.setProperty("transition", TRANSITION, "important");
+    }
   }
 
-  function syncMenuState() {
-    if (document.body.classList.contains(CLOSING_CLASS)) return;
-    var panel = document.querySelector(".side-menu_component");
-    setOpenState(isPanelOpen(panel));
+  function openMenu() {
+    if (document.body.classList.contains(OPEN_CLASS)) return;
+
+    document.body.classList.add(OPEN_CLASS);
+    document.body.style.overflow = "hidden";
+
+    applyOpen();
+
+    // Ensure scrim is above page content.
+    var scrim = getScrim();
+    scrim.classList.add("is-visible");
   }
 
   function closeMenu() {
-    document.body.classList.add(CLOSING_CLASS);
-    setOpenState(false);
+    if (!document.body.classList.contains(OPEN_CLASS)) return;
 
-    document.querySelectorAll(".close-button").forEach(function (btn) {
-      btn.click();
-    });
+    document.body.classList.remove(OPEN_CLASS);
+    // Force scroll back on close even if Webflow changed it.
+    document.body.style.overflow = "";
 
-    window.setTimeout(function () {
-      document.body.classList.remove(CLOSING_CLASS);
-      syncMenuState();
-    }, 450);
-  }
-
-  function observePanel() {
-    var panel = document.querySelector(".side-menu_component");
-    if (!panel) return;
-
-    var observer = new MutationObserver(syncMenuState);
-    observer.observe(panel, {
-      attributes: true,
-      attributeFilter: ["style", "class"],
-    });
-
-    syncMenuState();
+    getScrim().classList.remove("is-visible");
+    applyClosed();
   }
 
   function bind() {
-    getScrim();
-    observePanel();
+    var scrim = getScrim();
+    // Put initial state immediately.
+    applyClosed();
+    scrim.classList.remove("is-visible");
 
-    document.addEventListener("click", function (e) {
-      // Close when user clicks anywhere outside the side menu.
-      if (!document.body.classList.contains(OPEN_CLASS)) return;
-      if (e.target.closest(".side-menu_component")) return;
-      if (e.target.closest(".menu-button")) return;
-      if (e.target.closest(".close-button")) return;
-      closeMenu();
-    });
+    // Menu open triggers (bypass Webflow by stopping propagation).
+    document.addEventListener(
+      "click",
+      function (e) {
+        var menuBtn = e.target.closest(MENU_BUTTON_SELECTOR);
+        if (menuBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          openMenu();
+          return;
+        }
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && document.body.classList.contains(OPEN_CLASS)) {
-        closeMenu();
-      }
-    });
+        var closeBtn = e.target.closest(CLOSE_BUTTON_SELECTOR);
+        if (closeBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeMenu();
+          return;
+        }
+
+        // Click outside closes.
+        if (document.body.classList.contains(OPEN_CLASS)) {
+          var panel = getPanel();
+          if (panel && !e.target.closest(PANEL_SELECTOR)) {
+            closeMenu();
+          }
+        }
+      },
+      true
+    );
+
+    document.addEventListener(
+      "keydown",
+      function (e) {
+        if (e.key === "Escape" && document.body.classList.contains(OPEN_CLASS)) {
+          closeMenu();
+        }
+      },
+      true
+    );
   }
 
   if (document.readyState === "loading") {
