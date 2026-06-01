@@ -1,57 +1,68 @@
 (function () {
   "use strict";
 
+  var WHATSAPP_URL = "https://wa.me/16043003435";
+
   var wrapper = document.querySelector(".live-chat-wrapper---brix");
   if (!wrapper) return;
 
   var bubble = wrapper.querySelector(".live-chat-bubbble---brix");
-  var panel = wrapper.querySelector(".live-chat-content---brix");
-  var panelBody = wrapper.querySelector(".live-chat-content-left---brix");
-  var logo = wrapper.querySelector(".live-chat-logo---brix");
-  var closeIcon = wrapper.querySelector(".live-chat-close-icon---brix");
+  var panel = wrapper.querySelector(".live-chat-content-left---brix");
+  var chatBtn = wrapper.querySelector(".live-chat-button---brix.whatsapp");
+  var checkbox = wrapper.querySelector("#checkbox");
 
-  if (!bubble || !panel) return;
-
-  function isOpen() {
-    return wrapper.classList.contains("whatsapp-open");
+  if (chatBtn) {
+    chatBtn.setAttribute("href", WHATSAPP_URL);
+    chatBtn.setAttribute("target", "_blank");
+    chatBtn.setAttribute("rel", "noopener noreferrer");
   }
 
-  function setOpen(open) {
-    wrapper.classList.toggle("whatsapp-open", open);
-    bubble.setAttribute("aria-expanded", open ? "true" : "false");
-    bubble.setAttribute("aria-label", open ? "Close WhatsApp chat" : "Open WhatsApp chat");
+  function panelIsOpen() {
+    if (!panel) return false;
+    return parseFloat(window.getComputedStyle(panel).opacity) > 0.4;
+  }
 
-    if (logo) logo.style.opacity = open ? "0" : "1";
-    if (closeIcon) closeIcon.style.opacity = open ? "1" : "0";
-    if (panelBody) {
-      panelBody.style.opacity = open ? "1" : "0";
-      panelBody.style.transform = open ? "none" : "translateY(12px) scale(0.96)";
+  function revealChatButton() {
+    if (!chatBtn) return;
+    chatBtn.style.setProperty("display", "flex", "important");
+    chatBtn.style.setProperty("opacity", "1", "important");
+    chatBtn.style.setProperty("visibility", "visible", "important");
+    chatBtn.style.setProperty("pointer-events", "auto", "important");
+  }
+
+  function hideChatButton() {
+    if (!chatBtn) return;
+    chatBtn.style.removeProperty("display");
+    chatBtn.style.removeProperty("opacity");
+    chatBtn.style.removeProperty("visibility");
+    chatBtn.style.removeProperty("pointer-events");
+  }
+
+  function onPanelStateChange() {
+    if (panelIsOpen()) {
+      if (checkbox) {
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      }
+      revealChatButton();
+    } else {
+      hideChatButton();
     }
   }
 
-  setOpen(false);
+  if (panel) {
+    var observer = new MutationObserver(onPanelStateChange);
+    observer.observe(panel, {
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+    onPanelStateChange();
+  }
 
-  bubble.setAttribute("role", "button");
-  bubble.setAttribute("tabindex", "0");
-
-  bubble.addEventListener(
-    "click",
-    function (event) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      setOpen(!isOpen());
-    },
-    true
-  );
-
-  bubble.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      setOpen(!isOpen());
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && isOpen()) setOpen(false);
-  });
+  if (bubble) {
+    bubble.addEventListener("click", function () {
+      window.setTimeout(onPanelStateChange, 550);
+      window.setTimeout(onPanelStateChange, 1100);
+    });
+  }
 })();

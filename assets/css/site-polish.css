@@ -252,11 +252,7 @@ body.body-2 {
   padding-top: 1rem;
 }
 
-/* WhatsApp widget — hide stray form, avoid menu overlap */
-.live-chat-wrapper---brix .w-form {
-  display: none !important;
-}
-
+/* WhatsApp widget — bottom-left; keep Webflow open/close + wa.me CTA */
 .live-chat-wrapper---brix {
   z-index: 900;
   right: auto !important;
@@ -274,32 +270,19 @@ body.body-2 {
   align-items: flex-end;
   justify-content: flex-start;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease;
 }
 
-.live-chat-wrapper---brix:not(.whatsapp-open) .live-chat-content---brix {
-  opacity: 0;
-  visibility: hidden;
-  max-height: 0;
-  overflow: hidden;
-  margin: 0;
-}
-
-.live-chat-wrapper---brix.whatsapp-open .live-chat-content---brix {
-  opacity: 1;
-  visibility: visible;
-  max-height: 520px;
+.live-chat-content-left---brix,
+.live-chat-content-left---brix a,
+.live-chat-content-left---brix button,
+.live-chat-content-left---brix label {
   pointer-events: auto;
-  margin-bottom: 0.5rem;
-}
-
-.live-chat-content-left---brix {
-  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .live-chat-content-right---brix {
   margin-right: 0 !important;
   margin-left: 18px;
+  pointer-events: auto;
 }
 
 .live-chat-bubbble---brix {
@@ -309,14 +292,21 @@ body.body-2 {
   cursor: pointer;
 }
 
-.live-chat-close-icon---brix {
-  z-index: 1 !important;
-  opacity: 0;
-  transition: opacity 0.2s ease;
+/* Captcha checkbox is not used on static hosting — hide without breaking Webflow */
+.live-chat-wrapper---brix .w-form {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
-.live-chat-logo---brix {
-  transition: opacity 0.2s ease;
+.live-chat-button---brix.whatsapp {
+  min-height: 2.75rem;
 }
 
 .live-chat-message-bubble---brix {
