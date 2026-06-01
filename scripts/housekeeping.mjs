@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const POLISH_CSS =
-  '<link href="/OPEX-Fitness-Wellness/assets/css/site-polish.css?v=5" rel="stylesheet" type="text/css"/>';
+  '<link href="/OPEX-Fitness-Wellness/assets/css/site-polish.css?v=6" rel="stylesheet" type="text/css"/>';
 
 function walkHtml(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {

@@ -309,6 +309,14 @@ body.body-2 {
   min-height: 2.75rem;
 }
 
+/* Keep Chat With Us visible while panel is open (static site skips captcha step) */
+.live-chat-wrapper---brix.whatsapp-chat-open .live-chat-button---brix.whatsapp {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
 .live-chat-message-bubble---brix {
   border-radius: 36px 36px 3px 36px;
 }
