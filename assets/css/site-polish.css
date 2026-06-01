@@ -259,6 +259,29 @@ body.body-2 {
 
 .live-chat-wrapper---brix {
   z-index: 900;
+  right: auto !important;
+  left: 32px !important;
+  align-items: flex-start !important;
+}
+
+.live-chat-wrapper---brix.preview-page {
+  right: auto !important;
+  left: 1rem !important;
+  inset: auto auto 1rem 1rem !important;
+}
+
+.live-chat-content---brix {
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.live-chat-content-right---brix {
+  margin-right: 0 !important;
+  margin-left: 18px;
+}
+
+.live-chat-message-bubble---brix {
+  border-radius: 36px 36px 3px 36px;
 }
 
 /* Images */
@@ -325,8 +348,16 @@ img {
   }
 
   .live-chat-wrapper---brix {
-    right: 1rem !important;
+    left: max(1rem, env(safe-area-inset-left)) !important;
+    right: auto !important;
     bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  .live-chat-message-bubble---brix {
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 28px;
   }
 
   .herocta-grid {
