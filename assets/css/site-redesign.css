@@ -1,0 +1,667 @@
+/* ==========================================================================
+   OPEX — modern wellness design overlay (content & assets unchanged)
+   Loads after site-polish.css — visual refresh only
+   ========================================================================== */
+
+:root {
+  --rd-brand: #e87200;
+  --rd-brand-hover: #cf6600;
+  --rd-brand-soft: rgba(232, 114, 0, 0.12);
+  --rd-brand-muted: rgba(232, 114, 0, 0.06);
+  --rd-ink: #141416;
+  --rd-ink-muted: #5a5a63;
+  --rd-ink-soft: #8a8a94;
+  --rd-surface: #ffffff;
+  --rd-surface-page: #f8f7f4;
+  --rd-surface-alt: #f1f0ec;
+  --rd-surface-elevated: #ffffff;
+  --rd-border: rgba(20, 20, 22, 0.08);
+  --rd-border-strong: rgba(20, 20, 22, 0.14);
+  --rd-radius-sm: 10px;
+  --rd-radius: 16px;
+  --rd-radius-lg: 24px;
+  --rd-radius-pill: 999px;
+  --rd-shadow-sm: 0 2px 12px rgba(20, 20, 22, 0.06);
+  --rd-shadow: 0 12px 40px rgba(20, 20, 22, 0.08);
+  --rd-shadow-lg: 0 24px 60px rgba(20, 20, 22, 0.12);
+  --rd-font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --rd-section-y: clamp(3.5rem, 7vw, 6rem);
+  --rd-container: min(76rem, 92vw);
+  --rd-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --rd-duration: 0.35s;
+}
+
+/* —— Base —— */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--rd-font) !important;
+  color: var(--rd-ink) !important;
+  background-color: var(--rd-surface-page) !important;
+}
+
+::selection {
+  background: var(--rd-brand-soft);
+  color: var(--rd-ink);
+}
+
+/* —— Typography —— */
+.hero-heading,
+.services-heading,
+.section-heading,
+.we-are-heading,
+.team-heading,
+.bannerhead,
+.bannerhead-reduced,
+.banner-heading,
+.services-heading-ii,
+.faq-menu-title-label {
+  font-family: var(--rd-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--rd-ink) !important;
+  line-height: 1.12 !important;
+}
+
+.hero-heading {
+  font-size: clamp(2.25rem, 5.5vw, 4rem) !important;
+  line-height: 1.08 !important;
+}
+
+.services-heading,
+.section-heading,
+.we-are-heading,
+.team-heading,
+.bannerhead {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem) !important;
+}
+
+.bannerhead-reduced,
+.banner-heading {
+  font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
+}
+
+.section-subheading,
+.section-subheading-left,
+.section-subheader,
+.c-card-title {
+  font-family: var(--rd-font) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.3 !important;
+  color: var(--rd-ink) !important;
+}
+
+.subsection-text,
+.subsection-text-s,
+.subsection-text.full-width,
+.grid-text,
+.subtext,
+.subtext-body,
+.subtext-body-left,
+.subtext-body-white,
+.family-text,
+.review-txt,
+.team-text,
+.faq-answer-p,
+.contact-div .subsection-text {
+  font-family: var(--rd-font) !important;
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem) !important;
+  line-height: 1.65 !important;
+  color: var(--rd-ink-muted) !important;
+}
+
+.subtext-body-white,
+.section-subheader,
+.bannerhead,
+.bannerhead-reduced,
+.banner-heading,
+.hero-heading {
+  color: inherit;
+}
+
+.subtext.centered,
+.header-wrapper .subtext {
+  color: var(--rd-ink-muted) !important;
+}
+
+.intext-link,
+.footer-link,
+a.intext-link {
+  color: var(--rd-brand) !important;
+  text-decoration: none !important;
+  transition: color var(--rd-duration) var(--rd-ease);
+}
+
+.intext-link:hover,
+.footer-link:hover {
+  color: var(--rd-brand-hover) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* —— Layout rhythm —— */
+.section,
+.services-section,
+.review-section,
+.we-are-block,
+.we-are-block-ii,
+.content-wrap,
+.header-wrapper,
+.contactformsection,
+.faq-section {
+  padding-block: var(--rd-section-y) !important;
+}
+
+.content-wrap,
+.header-wrapper,
+.content-grid-wrapper,
+.services-header-wrapper,
+.review-master-wrapper,
+.faq-container {
+  width: var(--rd-container) !important;
+  max-width: var(--rd-container) !important;
+  margin-inline: auto !important;
+}
+
+.section-grey {
+  background-color: var(--rd-surface-alt) !important;
+  border-block: 1px solid var(--rd-border);
+}
+
+.review-section {
+  background: linear-gradient(180deg, var(--rd-surface-alt) 0%, var(--rd-surface-page) 100%) !important;
+  padding-block: var(--rd-section-y) !important;
+}
+
+.services-section {
+  margin-block: 0 !important;
+  padding-block: var(--rd-section-y) !important;
+}
+
+/* —— Hero —— */
+.hero-section {
+  min-height: min(92vh, 52rem) !important;
+  border-radius: 0 0 var(--rd-radius-lg) var(--rd-radius-lg);
+  margin-bottom: 0 !important;
+  isolation: isolate;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    rgba(12, 12, 14, 0.72) 0%,
+    rgba(12, 12, 14, 0.4) 42%,
+    rgba(12, 12, 14, 0.78) 100%
+  );
+}
+
+.hero-section .hero-container {
+  z-index: 2 !important;
+  max-width: var(--rd-container) !important;
+  width: 100% !important;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) !important;
+}
+
+.hero-heading {
+  color: #fff !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  margin-bottom: 1.5rem !important;
+}
+
+.heroctamaster,
+.herocta-grid {
+  gap: 0.875rem !important;
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.herocta-grid {
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)) !important;
+}
+
+/* —— Buttons (unified) —— */
+.w-button,
+.heroctabutton,
+.heroctabuttonmaster,
+.heroctabutton-ii,
+.heroctabutton-iii,
+.heroctabutton-narrow,
+.we-are-cta,
+.services-cta,
+.banner-cta,
+.live-chat-button---brix.whatsapp {
+  font-family: var(--rd-font) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.01em !important;
+  border: none !important;
+  border-radius: var(--rd-radius-pill) !important;
+  padding: 0.85rem 1.5rem !important;
+  min-height: 2.875rem !important;
+  box-shadow: var(--rd-shadow-sm) !important;
+  transition:
+    transform var(--rd-duration) var(--rd-ease),
+    background-color var(--rd-duration) var(--rd-ease),
+    box-shadow var(--rd-duration) var(--rd-ease) !important;
+}
+
+.w-button:hover,
+.heroctabutton:hover,
+.heroctabuttonmaster:hover,
+.heroctabutton-ii:hover,
+.heroctabutton-iii:hover,
+.heroctabutton-narrow:hover,
+.we-are-cta:hover,
+.services-cta:hover,
+.banner-cta:hover {
+  font-style: normal !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--rd-shadow) !important;
+  background-color: var(--rd-brand-hover) !important;
+  color: #fff !important;
+}
+
+/* —— Cards & surfaces (remove harsh black borders/shadows) —— */
+._w-card,
+.services-grid-wrap,
+.team-card,
+.how-it-works-wrapper-sub,
+.how-it-works-wrapper-sub-ii,
+.how-it-works-wrapper-sub-iii,
+.services-image-wrapper,
+.image-ii,
+.image-iv,
+.image-7,
+.image-8,
+.subject-img,
+.review-card,
+.accordion-item-ii,
+.related-services-card,
+.code-embed-4 {
+  border: 1px solid var(--rd-border) !important;
+  border-radius: var(--rd-radius) !important;
+  box-shadow: var(--rd-shadow-sm) !important;
+  background-color: var(--rd-surface-elevated) !important;
+  transition:
+    transform var(--rd-duration) var(--rd-ease),
+    box-shadow var(--rd-duration) var(--rd-ease),
+    border-color var(--rd-duration) var(--rd-ease) !important;
+}
+
+._w-card:hover,
+.services-grid-wrap:hover,
+.how-it-works-wrapper-sub:hover,
+.how-it-works-wrapper-sub-ii:hover,
+.how-it-works-wrapper-sub-iii:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: var(--rd-shadow) !important;
+  border-color: var(--rd-border-strong) !important;
+}
+
+._w-cards-list,
+.c-cards-list,
+.services-grid,
+.how-it-works-wrapper-grid,
+.other-training-grid,
+.executive-grid,
+.related-services-grid {
+  gap: clamp(1.25rem, 2.5vw, 2rem) !important;
+}
+
+._w-card {
+  min-height: auto !important;
+  margin-bottom: 0 !important;
+  padding: clamp(1.5rem, 3vw, 2.25rem) !important;
+}
+
+._w-card img,
+.services-image-wrapper img,
+.image-ii,
+.image-iv,
+.image-7,
+.image-8,
+.subject-img,
+.team-img {
+  border: none !important;
+  border-radius: calc(var(--rd-radius) - 4px) !important;
+  box-shadow: none !important;
+}
+
+/* —— Service / home cards —— */
+.c-card-title {
+  font-size: 1.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.services-cta {
+  margin-top: 1rem !important;
+  width: auto !important;
+  min-width: 10rem;
+}
+
+/* —— We Are / intro blocks —— */
+.we-are-block,
+.we-are-block-ii {
+  width: min(100%, 48rem) !important;
+  max-width: var(--rd-container) !important;
+  padding: clamp(1.5rem, 4vw, 3rem) !important;
+}
+
+.we-are-heading.center,
+.we-are-heading {
+  text-align: center !important;
+}
+
+.we-are-div {
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 1rem !important;
+}
+
+/* —— Orange CTA bands —— */
+.orange-section,
+.orange-section-ii {
+  min-height: clamp(14rem, 28vh, 22rem) !important;
+  height: auto !important;
+  margin-block: 0 !important;
+  border-radius: var(--rd-radius-lg) !important;
+  overflow: hidden;
+  box-shadow: var(--rd-shadow) inset;
+}
+
+.orange-section-div {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: var(--rd-radius) !important;
+  width: min(92%, 36rem) !important;
+  padding: clamp(1.25rem, 3vw, 2rem) !important;
+  box-shadow: var(--rd-shadow-lg) !important;
+}
+
+.orange-section .section-heading,
+.orange-section-ii .section-heading,
+.orange-section .subtext-body-white,
+.orange-section-ii .subtext-body-white {
+  color: #fff !important;
+}
+
+/* —— Full-bleed page heroes (team, remote PT, etc.) —— */
+.meet-the-team,
+.remote-pt,
+.prenatal-chiro,
+.abby-personal-training {
+  min-height: min(85vh, 40rem) !important;
+  height: auto !important;
+  border-radius: 0 0 var(--rd-radius-lg) var(--rd-radius-lg);
+  overflow: hidden;
+}
+
+.hero-container-banner,
+.bannerheadingcont {
+  max-width: var(--rd-container) !important;
+  margin-inline: auto !important;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2rem) !important;
+}
+
+.bannerhead,
+.bannerhead-reduced,
+.banner-heading {
+  color: #fff !important;
+}
+
+/* —— Reviews —— */
+.review-wrapper {
+  border-radius: var(--rd-radius) !important;
+  border: 1px solid var(--rd-border) !important;
+  box-shadow: var(--rd-shadow-sm) !important;
+  background: var(--rd-surface) !important;
+  padding: 1.5rem !important;
+}
+
+.review-txt {
+  font-style: normal !important;
+  color: var(--rd-ink-muted) !important;
+}
+
+/* —— Team —— */
+.team-card {
+  min-height: auto !important;
+  padding: clamp(1.5rem, 3vw, 2.5rem) !important;
+  max-width: var(--rd-container);
+  margin-inline: auto;
+}
+
+.team-image-wrapper {
+  border-radius: var(--rd-radius) !important;
+  overflow: hidden;
+  border: none !important;
+}
+
+.name {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* —— How it works / training grids —— */
+.how-it-works-wrapper-sub,
+.how-it-works-wrapper-sub-ii,
+.how-it-works-wrapper-sub-iii {
+  min-height: auto !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+}
+
+.how-it-works-wrapper-sub .image-iv,
+.how-it-works-wrapper-sub-ii .image-iv {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 16rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.other-training-grid {
+  width: min(100%, var(--rd-container)) !important;
+  margin-inline: auto !important;
+}
+
+/* —— Contact —— */
+.contactformsection {
+  background: var(--rd-surface) !important;
+  border-radius: var(--rd-radius-lg) !important;
+  border: 1px solid var(--rd-border) !important;
+  box-shadow: var(--rd-shadow) !important;
+  max-width: var(--rd-container) !important;
+  margin-inline: auto !important;
+}
+
+.contactformsection .text-field,
+.contactformsection .text-area {
+  border: 1px solid var(--rd-border-strong) !important;
+  border-radius: var(--rd-radius-sm) !important;
+  padding: 0.75rem 1rem !important;
+  background: var(--rd-surface-page) !important;
+  transition: border-color var(--rd-duration) var(--rd-ease), box-shadow var(--rd-duration) var(--rd-ease);
+}
+
+.contactformsection .text-field:focus,
+.contactformsection .text-area:focus {
+  border-color: var(--rd-brand) !important;
+  box-shadow: 0 0 0 3px var(--rd-brand-soft) !important;
+  outline: none !important;
+}
+
+.map-master-wrap,
+.map-master-wrap-ii,
+.map-master-wrap-iii {
+  background: var(--rd-surface) !important;
+  border-radius: var(--rd-radius) !important;
+  padding: clamp(1.5rem, 3vw, 2rem) !important;
+  border: 1px solid var(--rd-border) !important;
+}
+
+/* —— Related services —— */
+.related-services {
+  background: var(--rd-surface-alt) !important;
+  border-block: 1px solid var(--rd-border);
+  padding-block: var(--rd-section-y) !important;
+}
+
+/* —— Footer —— */
+.section-2 {
+  background: linear-gradient(180deg, #121214 0%, #0a0a0b 100%) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2.5rem) !important;
+  gap: clamp(1.5rem, 3vw, 2.5rem) !important;
+  margin-top: 0 !important;
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 500 !important;
+  font-size: 0.9375rem !important;
+}
+
+.footer-link:hover {
+  color: var(--rd-brand) !important;
+}
+
+.link-wrapper {
+  gap: 0.5rem !important;
+}
+
+/* —— FAQ (align with redesign tokens) —— */
+body.body-2 {
+  background: var(--rd-surface-page) !important;
+}
+
+.faq-section {
+  background: transparent !important;
+}
+
+.faq-menu-wrapper {
+  border: 1px solid var(--rd-border) !important;
+  box-shadow: var(--rd-shadow-sm) !important;
+}
+
+.faq-item-wrapper {
+  border: 1px solid var(--rd-border) !important;
+  box-shadow: none !important;
+}
+
+.faq-menu-item.w--current {
+  background: var(--rd-brand-muted) !important;
+  color: var(--rd-ink) !important;
+}
+
+.accent-color,
+.bold-text {
+  color: var(--rd-brand) !important;
+}
+
+/* —— Accordion / details —— */
+.accordion-item-ii {
+  background: var(--rd-surface) !important;
+  padding: 1rem 1.25rem !important;
+}
+
+/* —— Slider controls —— */
+.w-slider-dot {
+  background: var(--rd-border-strong) !important;
+}
+
+.w-slider-dot.w-active {
+  background: var(--rd-brand) !important;
+}
+
+/* —— WhatsApp widget polish —— */
+.live-chat-message-bubble---brix.whatsapp {
+  border: 1px solid var(--rd-border) !important;
+  box-shadow: var(--rd-shadow) !important;
+}
+
+.live-chat-button---brix.whatsapp {
+  border-radius: var(--rd-radius-pill) !important;
+}
+
+/* —— Focus visible —— */
+:focus-visible {
+  outline: 2px solid var(--rd-brand) !important;
+  outline-offset: 3px !important;
+}
+
+/* —— Mobile —— */
+@media screen and (max-width: 991px) {
+  .hero-section {
+    border-radius: 0 0 var(--rd-radius) var(--rd-radius);
+  }
+
+  .herocta-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  ._w-cards-list,
+  .c-cards-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .how-it-works-wrapper-grid,
+  .other-training-grid,
+  .executive-grid-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+
+  .services-grid-wrap {
+    min-height: auto !important;
+  }
+
+  .team-card {
+    min-height: auto !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .orange-section-div {
+    width: 94% !important;
+  }
+
+  .section-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
