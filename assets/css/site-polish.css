@@ -273,11 +273,50 @@ body.body-2 {
 .live-chat-content---brix {
   align-items: flex-end;
   justify-content: flex-start;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease;
+}
+
+.live-chat-wrapper---brix:not(.whatsapp-open) .live-chat-content---brix {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.live-chat-wrapper---brix.whatsapp-open .live-chat-content---brix {
+  opacity: 1;
+  visibility: visible;
+  max-height: 520px;
+  pointer-events: auto;
+  margin-bottom: 0.5rem;
+}
+
+.live-chat-content-left---brix {
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .live-chat-content-right---brix {
   margin-right: 0 !important;
   margin-left: 18px;
+}
+
+.live-chat-bubbble---brix {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.live-chat-close-icon---brix {
+  z-index: 1 !important;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.live-chat-logo---brix {
+  transition: opacity 0.2s ease;
 }
 
 .live-chat-message-bubble---brix {

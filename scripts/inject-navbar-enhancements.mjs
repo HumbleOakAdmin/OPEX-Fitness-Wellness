@@ -9,6 +9,8 @@ const POLISH_CSS =
   '<link href="/OPEX-Fitness-Wellness/assets/css/site-polish.css" rel="stylesheet" type="text/css"/>';
 const JS =
   '<script src="/OPEX-Fitness-Wellness/assets/js/navbar-enhancements.js" type="text/javascript"></script>';
+const WHATSAPP_JS =
+  '<script src="/OPEX-Fitness-Wellness/assets/js/whatsapp-widget.js?v=1" type="text/javascript"></script>';
 
 function walkHtml(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -34,7 +36,12 @@ for (const file of walkHtml(ROOT)) {
     );
   }
   if (!html.includes('navbar-enhancements.js')) {
-    html = html.replace(/<\/body>/, `${JS}</body>`);
+    html = html.replace(/<\/body>/, `${JS}${WHATSAPP_JS}</body>`);
+  } else if (!html.includes('whatsapp-widget.js')) {
+    html = html.replace(
+      /<script src="\/OPEX-Fitness-Wellness\/assets\/js\/navbar-enhancements\.js"[^>]*><\/script>/,
+      `$&${WHATSAPP_JS}`
+    );
   }
   fs.writeFileSync(file, html, 'utf8');
   console.log('Updated', path.relative(ROOT, file));
