@@ -307,9 +307,13 @@ body.body-2 {
 
 .live-chat-button---brix.whatsapp {
   min-height: 2.75rem;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
-/* Keep Chat With Us visible while panel is open (static site skips captcha step) */
+/* Only show after panel animation finishes (class set by whatsapp-widget.js) */
 .live-chat-wrapper---brix.whatsapp-chat-open .live-chat-button---brix.whatsapp {
   display: flex !important;
   opacity: 1 !important;

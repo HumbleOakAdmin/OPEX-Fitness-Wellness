@@ -10,7 +10,7 @@ const POLISH_CSS =
 const JS =
   '<script src="/OPEX-Fitness-Wellness/assets/js/navbar-enhancements.js" type="text/javascript"></script>';
 const WHATSAPP_JS =
-  '<script src="/OPEX-Fitness-Wellness/assets/js/whatsapp-widget.js?v=3" type="text/javascript"></script>';
+  '<script src="/OPEX-Fitness-Wellness/assets/js/whatsapp-widget.js?v=4" type="text/javascript"></script>';
 
 function walkHtml(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {

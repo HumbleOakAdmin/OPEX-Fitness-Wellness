@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const WHATSAPP_JS =
-  '<script src="/OPEX-Fitness-Wellness/assets/js/whatsapp-widget.js?v=3" type="text/javascript"></script>';
+  '<script src="/OPEX-Fitness-Wellness/assets/js/whatsapp-widget.js?v=4" type="text/javascript"></script>';
 
 function walkHtml(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -32,19 +32,19 @@ for (const file of walkHtml(ROOT)) {
     changed = true;
   }
 
-  if (html.includes("site-polish.css?v=5")) {
-    html = html.replaceAll("site-polish.css?v=5", "site-polish.css?v=6");
+  if (html.includes("site-polish.css?v=6")) {
+    html = html.replaceAll("site-polish.css?v=6", "site-polish.css?v=7");
     changed = true;
-  } else if (html.includes("site-polish.css?v=4")) {
-    html = html.replaceAll("site-polish.css?v=4", "site-polish.css?v=6");
+  } else if (html.includes("site-polish.css?v=5")) {
+    html = html.replaceAll("site-polish.css?v=5", "site-polish.css?v=7");
     changed = true;
   }
 
-  if (html.includes("whatsapp-widget.js?v=2")) {
-    html = html.replaceAll("whatsapp-widget.js?v=2", "whatsapp-widget.js?v=3");
+  if (html.includes("whatsapp-widget.js?v=3")) {
+    html = html.replaceAll("whatsapp-widget.js?v=3", "whatsapp-widget.js?v=4");
     changed = true;
-  } else if (html.includes("whatsapp-widget.js?v=1")) {
-    html = html.replaceAll("whatsapp-widget.js?v=1", "whatsapp-widget.js?v=3");
+  } else if (html.includes("whatsapp-widget.js?v=2")) {
+    html = html.replaceAll("whatsapp-widget.js?v=2", "whatsapp-widget.js?v=4");
     changed = true;
   }
 
